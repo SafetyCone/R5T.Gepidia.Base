@@ -5,7 +5,11 @@ using System.IO;
 
 namespace R5T.Gepidia
 {
-    public interface IFileSystemOperationsListing
+    /// <summary>
+    /// A private interface containing a single, unified, un-documented (for visual clarity), listing of all stringly-typed file system operations.
+    /// This interface is *not* meant to be implemented, but instead serve as a clear, single listing of all stringly-typed file system operations that are in reality spread throughout interfaces, interface extension methods, and static class, and riddled with comments making direct visual comparison difficult.
+    /// </summary>
+    interface IFileSystemOperationsListing
     {
         bool ExistsFile(string filePath);
         bool ExistsDirectory(string directoryPath);
