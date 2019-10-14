@@ -51,6 +51,9 @@ namespace R5T.Gepidia
     }
 
 
+    /// <summary>
+    /// Note! Can only use operations defined on the <see cref="IFileSystemOperator"/> since these extensions will not be part of any static implementation behind the implementing class facade.
+    /// </summary>
     public static class IFileSystemOperatorExtensions
     {
         public static void FileOrDirectorySwitch(this IFileSystemOperator fileSystemOperator, string path, Action fileAction, Action directoryAction)
@@ -112,6 +115,21 @@ namespace R5T.Gepidia
         {
             var output = fileSystemOperator.ExistsDirectory(path);
             return output;
+        }
+
+        public static void CreateDirectoryOnlyIfNotExists(this IFileSystemOperator fileSystemOperator, string directoryPath)
+        {
+            fileSystemOperator.CreateDirectory(directoryPath);
+        }
+
+        public static void DeleteDirectoryOnlyIfExists(this IFileSystemOperator fileSystemOperator, string directoryPath, bool recursive = true)
+        {
+            fileSystemOperator.DeleteDirectory(directoryPath, recursive);
+        }
+
+        public static void DeleteFileOnlyIfExists(this IFileSystemOperator fileSystemOperator, string filePath)
+        {
+            fileSystemOperator.DeleteFile(filePath);
         }
 
         public static void Delete(this IFileSystemOperator fileSystemOperator, string path)

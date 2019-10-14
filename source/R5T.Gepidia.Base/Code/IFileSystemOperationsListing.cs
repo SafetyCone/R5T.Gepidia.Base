@@ -11,7 +11,7 @@ namespace R5T.Gepidia
     /// </summary>
     interface IFileSystemOperationsListing
     {
-        bool ExistsFile(string filePath);
+        bool ExistsFile(string filePath); 
         bool ExistsDirectory(string directoryPath);
         bool Exists(string path);
 
@@ -24,7 +24,9 @@ namespace R5T.Gepidia
         // Create a codenamed library project that is just for a FileSystemEntryType enumeration (file/directory).
 
         void DeleteFile(string filePath); // Checks that entry exists, if it exists, that it's a file, and then deletes it. Idempotent, can be called multiple times with no ill effect.
+        void DeleteFileOnlyIfExists(string filePath); // Extension that shows the idempotent assumption of the DeleteFile() method. // Done in: IFileSystemOperatorExtensions, LocalFileSystem.
         void DeleteDirectory(string directoryPath, bool recursive = true); // Checks that the entry exists, if it exists, that it's a diretory, then deletes it (recursive and all!). Idempotent, can be called multiple times with no ill effect.
+        void DeleteDirectoryOnlyIfExists(string directoryPath, bool recursive = true); // Extension that shows the idempotent assumption of the DeleteDirectory() method. // Done in: IFileSystemOperatorExtensions, LocalFileSystem.
         void Delete(string path); // Checks that path exists, and if it does, what type of entry the path is, then calls the correct delete method.
 
         Stream CreateFile(string filePath, bool overwrite = true); // If overwrite is false and file path exists, throws an access exception? Found exception? Invalid operation exception? Exception?
@@ -32,6 +34,7 @@ namespace R5T.Gepidia
         Stream ReadFile(string filePath);
 
         void CreateDirectory(string directoryPath);
+        void CreateDirectoryOnlyIfNotExists(string directoryPath); // Extension that shows the idempotent assumption of the CreateDirectory() method. // Done in: IFileSystemOperatorExtensions, LocalFileSystem.
         IEnumerable<string> EnumerateFileSystemEntries(string directoryPath, bool recursive = false);
         IEnumerable<string> EnumerateDirectories(string directoryPath); // Non-recursive.
         IEnumerable<string> EnumerateFiles(string directoryPath); // Non-recursive.
@@ -46,6 +49,9 @@ namespace R5T.Gepidia
         DateTime GetLastModifiedTimeUTC(string path);
         //void SetLastModifiedTime(string path); // Modify the file to set the last modified time to now!
         //void SetLastModifiedTimeUTC(string path); // Modify the file to set the last modified time to now!
+
+        long GetFileSize(string filePath);
+        // Extension to get a directory's size.
 
         void ChangePermissions(string path, short mode);
 
@@ -68,8 +74,10 @@ namespace R5T.Gepidia
         void MoveDirectory(string sourceDirectoryPath, string destinationDirectoryPath);
         void Move(string sourcePath, string destinationPath, bool overwrite = true);
         // Rename is different than move? Maybe internally to the file system?
+        // Extension to change a file extension.
 
         // Extensions for reading/writing text lines.
+
 
         #region Exceptions
 
