@@ -21,6 +21,8 @@ namespace R5T.Gepidia
         bool IsFile(string path); // Same as IsExistingFile(). Path must exist, throw not found exception if not.
         bool IsDirectory(string path); // Same as IsExistingDirectory(). Path must exist, throw not found exception if not.
 
+        FileSystemEntryType GetFileSystemEntryType(string path);
+
         // Create a codenamed library project that is just for a FileSystemEntryType enumeration (file/directory).
 
         void DeleteFile(string filePath); // Checks that entry exists, if it exists, that it's a file, and then deletes it. Idempotent, can be called multiple times with no ill effect.
@@ -35,9 +37,10 @@ namespace R5T.Gepidia
 
         void CreateDirectory(string directoryPath);
         void CreateDirectoryOnlyIfNotExists(string directoryPath); // Extension that shows the idempotent assumption of the CreateDirectory() method. // Done in: IFileSystemOperatorExtensions, LocalFileSystem.
-        IEnumerable<string> EnumerateFileSystemEntries(string directoryPath, bool recursive = false);
+        IEnumerable<string> EnumerateFileSystemEntryPaths(string directoryPath, bool recursive = false);
         IEnumerable<string> EnumerateDirectories(string directoryPath); // Non-recursive.
         IEnumerable<string> EnumerateFiles(string directoryPath); // Non-recursive.
+        IEnumerable<FileSystemEntry> EnumerateFileSystemEntries(string directoryPath, bool recursive = false);
 
         // Extensions for filtering enumerated files/directories.
 

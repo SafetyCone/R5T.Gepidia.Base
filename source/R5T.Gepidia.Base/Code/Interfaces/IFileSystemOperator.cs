@@ -10,6 +10,8 @@ namespace R5T.Gepidia
         bool ExistsFile(string filePath);
         bool ExistsDirectory(string directoryPath);
 
+        FileSystemEntryType GetFileSystemEntryType(string path);
+
         void DeleteFile(string filePath); // Checks that entry exists, if it exists, that it's a file, and then deletes it. Idempotent, can be called multiple times with no ill effect.
         void DeleteDirectory(string directoryPath, bool recursive = true); // Checks that the entry exists, if it exists, that it's a diretory, then deletes it (recursive and all!). Idempotent, can be called multiple times with no ill effect.
 
@@ -20,9 +22,10 @@ namespace R5T.Gepidia
 
         void CreateDirectory(string directoryPath);
 
-        IEnumerable<string> EnumerateFileSystemEntries(string directoryPath, bool recursive = false);
+        IEnumerable<string> EnumerateFileSystemEntryPaths(string directoryPath, bool recursive = false);
         IEnumerable<string> EnumerateDirectories(string directoryPath); // Not placed as an extension for native-support speed. Avoid requiring calls to the file system for each file system entry to determine if the entry is a file or directory.
         IEnumerable<string> EnumerateFiles(string directoryPath); // Not placed as an extension for native-support speed. Avoid requiring calls to the file system for each file system entry to determine if the entry is a file or directory.
+        IEnumerable<FileSystemEntry> EnumerateFileSystemEntries(string directoryPath, bool recursive = false);
 
         DateTime GetDirectoryLastModifiedTimeUTC(string directoryPath);
         DateTime GetFileLastModifiedTimeUTC(string filePath);
