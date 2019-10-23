@@ -160,5 +160,11 @@ namespace R5T.Gepidia
         // Extensions for filtering enumerated files/directories.
 
         // Extensions for reading/writing text lines.
+        public static TextWriter CreateFileText(this IFileSystemOperator fileSystemOperator, string filePath, bool overwrite = true)
+        {
+            var writerStream = fileSystemOperator.CreateFile(filePath, overwrite);
+            var writerTextStream = new StreamWriter(writerStream); // Will close the stream, so ok!
+            return writerTextStream;
+        }
     }
 }
