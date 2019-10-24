@@ -11,6 +11,10 @@ namespace R5T.Gepidia
     /// </summary>
     interface IFileSystemOperationsListing
     {
+        // TODO
+        // * MakeDirectoryPathDirectoryIndicated() as an alias of EnsureDirectoryPathIsDirectoryIndicated().
+
+
         bool ExistsFile(string filePath); 
         bool ExistsDirectory(string directoryPath);
         bool Exists(string path);
