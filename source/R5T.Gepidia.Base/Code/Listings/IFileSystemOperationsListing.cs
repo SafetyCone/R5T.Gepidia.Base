@@ -13,6 +13,8 @@ namespace R5T.Gepidia
     {
         // TODO
         // * MakeDirectoryPathDirectoryIndicated() as an alias of EnsureDirectoryPathIsDirectoryIndicated().
+        // * Enumerate paths with a Regex.
+        // * Enumerate paths with recursive option.
 
 
         bool ExistsFile(string filePath); 
