@@ -43,13 +43,5 @@ namespace R5T.Gepidia
         // Move files and directories internally within the file system.
         void MoveFile(string sourceFilePath, string destinationFilePath, bool overwrite = true);
         void MoveDirectory(string sourceDirectoryPath, string destinationDirectoryPath);
-
-
-        #region Exceptions
-
-        string GetCannotOverwriteFileExceptionMessage(string filePath);
-        IOException GetCannotOverwriteFileIOException(string filePath);
-
-        #endregion
     }
 }

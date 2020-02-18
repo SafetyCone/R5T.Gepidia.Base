@@ -166,5 +166,17 @@ namespace R5T.Gepidia
             var writerTextStream = new StreamWriter(writerStream); // Will close the stream, so ok!
             return writerTextStream;
         }
+
+        public static string GetCannotOverwriteFileExceptionMessage(this IFileSystemOperator fileSystemOperator, string filePath)
+        {
+            var output = CommonFileSystem.GetCannotOverwriteFileExceptionMessage(filePath);
+            return output;
+        }
+
+        public static IOException GetCannotOverwriteFileIOException(this IFileSystemOperator fileSystemOperator, string filePath)
+        {
+            var output = CommonFileSystem.GetCannotOverwriteFileIOException(filePath);
+            return output;
+        }
     }
 }
