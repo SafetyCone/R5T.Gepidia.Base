@@ -1,12 +1,17 @@
 ﻿using System;
 
-using R5T.Gepidia;
-
 
 namespace R5T.Gepidia
 {
     public class FileSystemSite
     {
+        public static FileSystemSite New(string directoryPath, IFileSystemOperator fileSystemOperator)
+        {
+            var fileSystemSite = new FileSystemSite(directoryPath, fileSystemOperator);
+            return fileSystemSite;
+        }
+
+
         public string DirectoryPath { get; }
         public IFileSystemOperator FileSystemOperator { get; }
 
