@@ -1,5 +1,34 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
+
+
+namespace System
+{
+    using R5T.Gepidia;
+
+    public static class IFileSystemOperatorExtensions
+    {
+        public static async Task<string> ReadTextFile(this IFileSystemOperator fileSystemOperator, string textFilePath)
+        {
+            using (var fileStream = fileSystemOperator.ReadFile(textFilePath))
+            using (var textReader = new StreamReader(fileStream))
+            {
+                var text = await textReader.ReadToEndAsync();
+                return text;
+            }
+        }
+
+        public static async Task WriteTextFile(this IFileSystemOperator fileSystemOperator, string textFilePath, string text)
+        {
+            using(var fileStream = fileSystemOperator.OpenFile(textFilePath))
+            using (var textWriter = new StreamWriter(fileStream))
+            {
+                await textWriter.WriteAsync(text);
+            }
+        }
+    }
+}
 
 
 namespace R5T.Gepidia
