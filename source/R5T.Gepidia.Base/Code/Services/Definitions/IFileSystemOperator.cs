@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 
+using R5T.T0064;
+
 
 namespace R5T.Gepidia
 {
-    public interface IFileSystemOperator
+    [ServiceDefinitionMarker]
+    public interface IFileSystemOperator : IServiceDefinition
     {
         bool ExistsFile(string filePath);
         bool ExistsDirectory(string directoryPath);
